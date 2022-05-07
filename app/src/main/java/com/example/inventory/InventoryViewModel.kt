@@ -26,6 +26,14 @@ class InventoryViewModel(private val itemDao: ItemDao): ViewModel() {
         val newItem = getNewItemEntry(itemName, itemPrice, itemCount)
         insertItem(newItem)
     }
+
+    //    Simple method to check if the TextFields are not empty
+    fun isEntryValid(itemName: String, itemPrice: String, itemCount: String): Boolean{
+        if(itemName.isBlank() || itemPrice.isBlank() || itemCount.isBlank()) {
+            return false
+        }
+        return true
+    }
 }
 
 class InventoryViewModelFactory(private val itemDao: ItemDao): ViewModelProvider.Factory {
