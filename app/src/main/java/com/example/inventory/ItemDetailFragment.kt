@@ -54,6 +54,14 @@ class ItemDetailFragment : Fragment() {
         return binding.root
     }
 
+    private fun editText() {
+        val action = ItemDetailFragmentDirections.actionItemDetailFragmentToAddItemFragment(
+            getString(R.string.edit_fragment_title),
+            item.id
+        )
+        this.findNavController().navigate(action)
+    }
+
     /**
      * Displays an alert dialog to get the user's confirmation before deleting the item.
      */
@@ -102,7 +110,8 @@ class ItemDetailFragment : Fragment() {
             itemCount.text = item.quantityInStock.toString()
             sellItem.isEnabled = viewModel.isStockAvailable(item)
             sellItem.setOnClickListener{viewModel.sellItem(item)}
-            deleteItem.setOnClickListener { showConfirmationDialog() }
+            deleteItem.setOnClickListener { showConfirmationDialog()}
+            editItem.setOnClickListener{editText()}
         }
     }
 }
